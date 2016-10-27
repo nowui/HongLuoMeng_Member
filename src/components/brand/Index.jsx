@@ -31,6 +31,8 @@ class BrandIndex extends Component {
 
   componentDidMount() {
     this.load()
+
+    this.loadProduct()
   }
 
   load = function() {
@@ -46,6 +48,26 @@ class BrandIndex extends Component {
         self.setState({
           brand: data
         })
+      },
+      complete: function() {
+
+      }
+    })
+  }
+
+  loadProduct = function() {
+    let self = this
+
+    Helper.ajax({
+      url: '/product/brand/list/get',
+      data: {
+        page: 0,
+        limit: 0,
+        brand_id: self.props.params.brand_id
+      },
+      unLoad: true,
+      success: function(data) {
+
       },
       complete: function() {
 
