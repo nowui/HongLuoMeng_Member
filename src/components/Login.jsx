@@ -124,7 +124,7 @@ class Login extends Component {
               <Button type="default" onClick={this.onClickRegister.bind(this)}>注册</Button>
             </Flex.Item>
             <Flex.Item>
-              <Button type="default" size="small" onClick={this.onClickRegister.bind(this)}>忘记密码</Button>
+              <Button type="default" onClick={this.onClickRegister.bind(this)}>忘记密码</Button>
             </Flex.Item>
           </Flex>
         </div>
