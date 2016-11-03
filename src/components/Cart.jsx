@@ -103,6 +103,19 @@ class Cart extends Component {
     let self = this
 
     self.props.form.validateFields((errors, values) => {
+      let cartList = []
+
+      for(let i = 0; i < self.state.cartList.length; i++) {
+        let cart = self.state.cartList[i]
+
+        cartList.push({
+          product_sku_id: cart.product_sku_id,
+          product_amount: cart.product_amount
+        })
+      }
+
+      values.cartList = cartList
+
       Helper.ajax({
         url: '/order/save',
         data: values,
