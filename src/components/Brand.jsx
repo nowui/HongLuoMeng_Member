@@ -189,15 +189,7 @@ class Brand extends Component {
                           <div style={{ display: 'inline-block' }}>
                             <p>{brand.brand_name}</p>
                           </div>
-                          {
-                            brand.brand_is_apply ?
-                              brand.brand_is_review ?
-                              <div style={{position: 'absolute', right: '78px', top: '30px', color: '#888'}}>已签约</div>
-                              :
-                              <div style={{position: 'absolute', right: '78px', top: '30px', color: '#888'}}>待审核</div>
-                            :
-                            ''
-                          }
+                          <div style={{position: 'absolute', right: '78px', top: '30px', color: '#888'}}>{brand.brand_apply_review_status}</div>
                         </div>
                       </List.Item>
                     )
