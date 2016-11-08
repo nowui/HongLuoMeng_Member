@@ -81,6 +81,30 @@ class Login extends Component {
     })
   }
 
+  onClickWeiBoLogin() {
+    let self = this
+
+    Helper.ajax({
+      url: '/member/weibo/oauth',
+      data: {
+        member_name: '1',
+        member_avatar: '2',
+        member_avatar_small: '3',
+        member_avatar_large: '4',
+        weibo_uid: '5',
+        weibo_access_token: '6',
+        member_weibo_fans: 7,
+        member_weibo_friend: 8
+      },
+      success: function(data) {
+
+      },
+      complete: function() {
+
+      }
+    })
+  }
+
   onClickRegister() {
     this.props.router.push({
       pathname: '/register',
@@ -125,6 +149,15 @@ class Login extends Component {
             </Flex.Item>
             <Flex.Item>
               <Button type="default" onClick={this.onClickRegister.bind(this)}>忘记密码</Button>
+            </Flex.Item>
+          </Flex>
+        </div>
+        <div style={{ margin: '20px 20px 0px 20px'}}>
+          <Flex>
+            <Flex.Item>
+              <Button type="default" onClick={this.onClickWeiBoLogin.bind(this)}>微博登录</Button>
+            </Flex.Item>
+            <Flex.Item>
             </Flex.Item>
           </Flex>
         </div>

@@ -179,7 +179,7 @@ class BrandIndex extends Component {
           </List>
 
           {
-            this.state.brand.brand_apply_review_status == 'none' || this.state.brand.brand_apply_review_status == 'cancel' ?
+            this.state.brand.brand_apply_review_status == 'none' || this.state.brand.brand_apply_review_status == 'refuse' || this.state.brand.brand_apply_review_status == 'cancel' ?
             <div style={{ margin: '100px 20px 0px 20px'}}>
               <Button type="primary" onClick={this.onClickSubmit.bind(this, true)}>签约</Button>
             </div>
