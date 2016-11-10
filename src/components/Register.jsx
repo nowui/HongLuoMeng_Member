@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter } from 'react-router'
-import { Form } from 'antd'
+import { createForm } from 'rc-form'
 import Helper from '../common/Helper'
 
 import NavBar from 'antd-mobile/lib/nav-bar'
@@ -137,7 +137,7 @@ class Register extends Component {
   }
 }
 
-Register = Form.create({
+Register = createForm({
 
 })(Register)
 

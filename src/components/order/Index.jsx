@@ -13,7 +13,7 @@ import 'antd-mobile/lib/list/style/index.css'
 import 'antd-mobile/lib/button/style/index.css'
 import 'antd-mobile/lib/icon/style/index.css'
 
-class Delivery extends Component {
+class Order extends Component {
 
   constructor(props) {
     super(props)
@@ -31,7 +31,7 @@ class Delivery extends Component {
     let self = this
 
     Helper.ajax({
-      url: '/member/delivery/list/get',
+      url: '/order/list/get',
       data: {
         page: 0,
         limit: 0
@@ -48,17 +48,9 @@ class Delivery extends Component {
   }
 
   onClickListItem(id) {
+    return
     this.props.router.push({
-      pathname: '/delivery/edit/' + id,
-      query: {
-
-      }
-    })
-  }
-
-  onClickAdd() {
-    this.props.router.push({
-      pathname: '/delivery/add',
+      pathname: '/order/edit/' + id,
       query: {
 
       }
@@ -73,7 +65,7 @@ class Delivery extends Component {
     return (
       <div>
         <div className="header">
-          <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)} rightContent={[<div key="0" onClick={this.onClickAdd.bind(this)}>新增</div>]}>收货地址</NavBar>
+          <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)}>我的订单</NavBar>
         </div>
         <div className="container">
           <List>
@@ -82,9 +74,9 @@ class Delivery extends Component {
                 this.state.list.map(function (item, index) {
                   return (
                     <List.Item key={index} arrow="horizontal" onClick={this.onClickListItem.bind(this, item.member_delivery_id)}>
-                      <div style={{marginTop: '20px', height: '50px'}}><span style={{color: '#777777'}}>收货人:</span> {item.member_delivery_name}</div>
-                      <div style={{height: '50px'}}><span style={{color: '#777777'}}>联系电话:</span> {item.member_delivery_phone}</div>
-                      <div style={{marginBottom: '20px'}}><span style={{color: '#777777'}}>收货地址:</span> {item.member_delivery_province + item.member_delivery_city + item.member_delivery_area + item.member_delivery_address}</div>
+                      <div style={{marginTop: '20px', height: '50px'}}><span style={{color: '#777777'}}>订单号:</span> {item.order_no}</div>
+                      <div style={{height: '50px'}}><span style={{color: '#777777'}}>商品数量:</span> {item.order_payment_amount}</div>
+                      <div style={{marginBottom: '20px'}}><span style={{color: '#777777'}}>价格合计:</span> {item.order_payment_price}</div>
                     </List.Item>
                   )
                 }.bind(this))
@@ -97,4 +89,4 @@ class Delivery extends Component {
   }
 }
 
-export default withRouter(Delivery)
+export default withRouter(Order)

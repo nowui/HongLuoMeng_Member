@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router'
-import { Form, Upload } from 'antd'
+import { createForm } from 'rc-form'
 import Helper from '../../common/Helper'
 
 import NavBar from 'antd-mobile/lib/nav-bar'
@@ -71,13 +71,22 @@ class ProductIndex extends Component {
   }
 
   onClickCart() {
+    this.props.router.push({
+      pathname: '/cart',
+      query: {
+
+      }
+    })
+  }
+
+  onClickAddToCart() {
     let self = this
 
     Helper.ajax({
       url: '/cart/save',
       data: {
         product_sku_id: this.state.product.productSkuList[0].product_sku_id,
-        cart_product_number: this.props.form.getFieldValue('cart_product_number')
+        cart_product_amount: this.props.form.getFieldValue('cart_product_amount')
       },
       success: function(data) {
         Toast.success('操作成功', Helper.duration)
@@ -94,7 +103,7 @@ class ProductIndex extends Component {
     return (
       <div>
         <div className="header">
-          <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)} rightContent={[<Link key="0" to={"/cart"}>购物车</Link>]}>{this.state.product.product_name}</NavBar>
+          <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)} rightContent={[<div key="0" onClick={this.onClickCart.bind(this)}>购物车</div>]}>{this.state.product.product_name}</NavBar>
         </div>
 
         <div className="container">
@@ -106,14 +115,14 @@ class ProductIndex extends Component {
                 <List.Item extra={this.state.product.productSkuList[0].product_stock}>
                   产品库存
                 </List.Item>
-                <List.Item extra={<Stepper {...getFieldProps('cart_product_number', {initialValue: '1'})} showNumber size="small" max={99} min={1} onChange={this.onChange.bind(this)} />}>
+                <List.Item extra={<Stepper {...getFieldProps('cart_product_amount', {initialValue: '1'})} showNumber size="small" max={99} min={1} onChange={this.onChange.bind(this)} />}>
                   购买量
                 </List.Item>
             </List.Body>
           </List>
 
           <div style={{ margin: '100px 20px 0px 20px'}}>
-            <Button type="primary" onClick={this.onClickCart.bind(this)}>加入购物车</Button>
+            <Button type="primary" onClick={this.onClickAddToCart.bind(this)}>加入购物车</Button>
           </div>
         </div>
       </div>
@@ -121,7 +130,7 @@ class ProductIndex extends Component {
   }
 }
 
-ProductIndex = Form.create({
+ProductIndex = createForm({
 
 })(ProductIndex)
 

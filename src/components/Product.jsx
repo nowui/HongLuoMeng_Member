@@ -118,6 +118,15 @@ class Brand extends Component {
     })
   }
 
+  onClickCart() {
+    this.props.router.push({
+      pathname: '/cart',
+      query: {
+
+      }
+    })
+  }
+
   onValueChange(value) {
     if(value == '我的品牌') {
       this.loadMy('')
@@ -144,7 +153,7 @@ class Brand extends Component {
           }}
         >
           <div className="header">
-            <NavBar mode="light" iconName={false} rightContent={[<Link key="0" to={"/cart"}>购物车</Link>]}>产品列表</NavBar>
+            <NavBar mode="light" iconName={false} rightContent={[<div key="0" onClick={this.onClickCart.bind(this)}>购物车</div>]}>产品列表</NavBar>
           </div>
           <div className="container" style={{marginTop: '20px'}}>
 

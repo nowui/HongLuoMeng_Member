@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router'
-import { Form, Spin } from 'antd'
+import { createForm } from 'rc-form'
 import Helper from '../common/Helper'
 
 import NavBar from 'antd-mobile/lib/nav-bar'
@@ -26,7 +26,6 @@ class Cart extends Component {
     super(props)
 
     this.state = {
-      isLoad: false,
       cartList: []
     }
   }
@@ -52,14 +51,14 @@ class Cart extends Component {
     })
   }
 
-  update = function(cart_id, product_amount) {
+  update = function(cart_id, cart_product_amount) {
     let self = this
 
     Helper.ajax({
       url: '/cart/update',
       data: {
         cart_id: cart_id,
-        product_amount: product_amount
+        cart_product_amount: cart_product_amount
       },
       success: function(data) {
         self.load()
@@ -87,11 +86,11 @@ class Cart extends Component {
     })
   }
 
-  onChange(cart_id, product_amount) {
-    if(product_amount == 0) {
+  onChange(cart_id, cart_product_amount) {
+    if(cart_product_amount == 0) {
       this.delete(cart_id)
     } else {
-      this.update(cart_id, product_amount)
+      this.update(cart_id, cart_product_amount)
     }
   }
 
@@ -110,7 +109,7 @@ class Cart extends Component {
 
         cartList.push({
           product_sku_id: cart.product_sku_id,
-          product_amount: cart.product_amount
+          cart_product_amount: cart.cart_product_amount
         })
       }
 
@@ -142,7 +141,7 @@ class Cart extends Component {
     const { getFieldProps } = this.props.form
 
     return (
-      <Spin size="large" spinning={this.state.isLoad}>
+      <div>
         <div className="header">
           <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)}>购物车</NavBar>
         </div>
@@ -153,7 +152,7 @@ class Cart extends Component {
               {
                 this.state.cartList.map(function (cart, index) {
                   return (
-                    <List.Item key={cart.cart_id} extra={<Stepper {...getFieldProps('product_amount', {initialValue: cart.product_amount})} showNumber size="small" max={99} min={0} onChange={this.onChange.bind(this, cart.cart_id)} />}>
+                    <List.Item key={cart.cart_id} extra={<Stepper {...getFieldProps('cart_product_amount', {initialValue: cart.cart_product_amount})} showNumber size="small" max={99} min={0} onChange={this.onChange.bind(this, cart.cart_id)} />}>
                       {cart.product_name}
                     </List.Item>
                   )
@@ -241,12 +240,12 @@ class Cart extends Component {
             <Button type="primary" onClick={this.onClickPay.bind(this)}>付款</Button>
           </div>
         </div>
-      </Spin>
+      </div>
     )
   }
 }
 
-Cart = Form.create({
+Cart = createForm({
 
 })(Cart)
 

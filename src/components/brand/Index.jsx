@@ -1,6 +1,6 @@
 import React, { Component } from 'react'
 import { withRouter, Link } from 'react-router'
-import { Form, Upload } from 'antd'
+import { createForm } from 'rc-form'
 import Helper from '../../common/Helper'
 
 import NavBar from 'antd-mobile/lib/nav-bar'
@@ -112,29 +112,6 @@ class BrandIndex extends Component {
   render() {
     const { getFieldProps } = this.props.form
 
-    const props = {
-      name: 'file',
-      multiple: false,
-      showUploadList: false,
-      accept: 'image/jpg,image/jpeg,image/png,image/gif',
-      action: Helper.host + '/upload/image',
-      headers: {
-        'token': Helper.getToken(),
-        'platform': Helper.platform,
-        'version': Helper.version
-      },
-		  onChange(info) {
-		    if (info.file.status !== 'uploading') {
-		      console.log(info.file, info.fileList)
-		    }
-		    if (info.file.status === 'done') {
-		      console.log(`${info.file.name} file uploaded successfully`)
-		    } else if (info.file.status === 'error') {
-		      console.log(`${info.file.name} file upload failed.`)
-		    }
-		  }
-		}
-
     return (
       <div>
         <div className="header">
@@ -168,13 +145,6 @@ class BrandIndex extends Component {
               clear
               placeholder="请输入生份证照片反面"
               >照片反面</InputItem>
-              <List.Item>
-              	<Upload {...props}>
-							    <Button type="ghost">
-							      <Icon type="upload" /> Click to Upload
-							    </Button>
-							  </Upload>
-              </List.Item>
             </List.Body>
           </List>
 
@@ -201,7 +171,7 @@ class BrandIndex extends Component {
   }
 }
 
-BrandIndex = Form.create({
+BrandIndex = createForm({
 
 })(BrandIndex)
 

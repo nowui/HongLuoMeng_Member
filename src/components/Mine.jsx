@@ -44,9 +44,9 @@ class Mine extends Component {
     })
   }
 
-  onClickListItem(id) {
+  onClickListItem(url) {
     this.props.router.push({
-      pathname: '/delivery/index',
+      pathname: url,
       query: {
 
       }
@@ -111,10 +111,10 @@ class Mine extends Component {
                 <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, '')}>
                   我的品牌
                 </List.Item>
-                <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, '')}>
+                <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, '/order/index')}>
                   我的订单
                 </List.Item>
-                <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, '')}>
+                <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, '/delivery/index')}>
                   收货地址
                 </List.Item>
               </List.Body>
