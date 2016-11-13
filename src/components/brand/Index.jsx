@@ -120,32 +120,30 @@ class BrandIndex extends Component {
 
         <div className="container">
           <List style={{ marginTop: '40px' }}>
-            <List.Body>
-              <InputItem {...getFieldProps('member_real_name', {
-                initialValue: ''
-              })}
-              clear
-              placeholder="请输入真实姓名"
-              >申请人</InputItem>
-              <InputItem {...getFieldProps('member_identity_card', {
-                initialValue: ''
-              })}
-              clear
-              placeholder="请输入生份证号"
-              >生份证号</InputItem>
-              <InputItem {...getFieldProps('member_identity_card_front_image', {
-                initialValue: ''
-              })}
-              clear
-              placeholder="请输入生份证照片正面"
-              >照片正面</InputItem>
-              <InputItem {...getFieldProps('member_identity_card_back_image', {
-                initialValue: ''
-              })}
-              clear
-              placeholder="请输入生份证照片反面"
-              >照片反面</InputItem>
-            </List.Body>
+            <InputItem {...getFieldProps('member_real_name', {
+              initialValue: ''
+            })}
+            clear
+            placeholder="请输入真实姓名"
+            >申请人</InputItem>
+            <InputItem {...getFieldProps('member_identity_card', {
+              initialValue: ''
+            })}
+            clear
+            placeholder="请输入生份证号"
+            >生份证号</InputItem>
+            <InputItem {...getFieldProps('member_identity_card_front_image', {
+              initialValue: ''
+            })}
+            clear
+            placeholder="请输入生份证照片正面"
+            >照片正面</InputItem>
+            <InputItem {...getFieldProps('member_identity_card_back_image', {
+              initialValue: ''
+            })}
+            clear
+            placeholder="请输入生份证照片反面"
+            >照片反面</InputItem>
           </List>
 
           {

@@ -77,19 +77,17 @@ class Delivery extends Component {
         </div>
         <div className="container">
           <List>
-            <List.Body>
-              {
-                this.state.list.map(function (item, index) {
-                  return (
-                    <List.Item key={index} arrow="horizontal" onClick={this.onClickListItem.bind(this, item.member_delivery_id)}>
-                      <div style={{marginTop: '20px', height: '50px'}}><span style={{color: '#777777'}}>收货人:</span> {item.member_delivery_name}</div>
-                      <div style={{height: '50px'}}><span style={{color: '#777777'}}>联系电话:</span> {item.member_delivery_phone}</div>
-                      <div style={{marginBottom: '20px'}}><span style={{color: '#777777'}}>收货地址:</span> {item.member_delivery_province + item.member_delivery_city + item.member_delivery_area + item.member_delivery_address}</div>
-                    </List.Item>
-                  )
-                }.bind(this))
-              }
-            </List.Body>
+            {
+              this.state.list.map(function (item, index) {
+                return (
+                  <List.Item key={index} arrow="horizontal" onClick={this.onClickListItem.bind(this, item.member_delivery_id)}>
+                    <div style={{marginTop: '20px', height: '50px'}}><span style={{color: '#777777'}}>收货人:</span> {item.member_delivery_name}</div>
+                    <div style={{height: '50px'}}><span style={{color: '#777777'}}>联系电话:</span> {item.member_delivery_phone}</div>
+                    <div style={{marginBottom: '20px'}}><span style={{color: '#777777'}}>收货地址:</span> {item.member_delivery_province + item.member_delivery_city + item.member_delivery_area + item.member_delivery_address}</div>
+                  </List.Item>
+                )
+              }.bind(this))
+            }
           </List>
         </div>
       </div>

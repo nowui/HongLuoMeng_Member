@@ -121,23 +121,21 @@ class Login extends Component {
       <div>
         <NavBar mode="light" iconName={false}>会员登录</NavBar>
         <List style={{ margin: '100px 20px 0px 20px'}}>
-          <List.Body>
-            <InputItem {...getFieldProps('user_phone', {
-                initialValue: ''
-              })}
-              clear
-              placeholder="请输入帐号"
-              >帐号</InputItem>
-            <InputItem
-              {...getFieldProps('user_password', {
-                initialValue: ''
-              })}
-              type="password"
-              format="password"
-              clear
-              placeholder="请输入密码"
-            >密码</InputItem>
-          </List.Body>
+          <InputItem {...getFieldProps('user_phone', {
+              initialValue: ''
+            })}
+            clear
+            placeholder="请输入帐号"
+            >帐号</InputItem>
+          <InputItem
+            {...getFieldProps('user_password', {
+              initialValue: ''
+            })}
+            type="password"
+            format="password"
+            clear
+            placeholder="请输入密码"
+          >密码</InputItem>
         </List>
         <div style={{ margin: '100px 20px 0px 20px'}}>
           <Button type="primary" onClick={this.onClickSubmit.bind(this)}>确定</Button>

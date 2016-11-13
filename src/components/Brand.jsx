@@ -179,23 +179,21 @@ class Brand extends Component {
               }
             </Tabs>
             <List>
-              <List.Body>
-                {
-                  this.state.brandList.map(function (brand, brandIndex) {
-                    return (
-                      <List.Item key={brand.brand_id} arrow="horizontal" onClick={this.onClickListItem.bind(this, brand.brand_id)}>
-                        <div style={{ display: '-webkit-box', display: 'flex' }}>
-                          <img style={{ width: 64, marginRight: 8 }} src={Helper.host + brand.brand_logo} />
-                          <div style={{ display: 'inline-block' }}>
-                            <p>{brand.brand_name}</p>
-                          </div>
-                          <div style={{position: 'absolute', right: '78px', top: '30px', color: '#888'}}>{brand.brand_apply_review_status}</div>
+              {
+                this.state.brandList.map(function (brand, brandIndex) {
+                  return (
+                    <List.Item key={brand.brand_id} arrow="horizontal" onClick={this.onClickListItem.bind(this, brand.brand_id)}>
+                      <div style={{ display: '-webkit-box', display: 'flex' }}>
+                        <img style={{ width: 64, marginRight: 8 }} src={Helper.host + brand.brand_logo} />
+                        <div style={{ display: 'inline-block' }}>
+                          <p>{brand.brand_name}</p>
                         </div>
-                      </List.Item>
-                    )
-                  }.bind(this))
-                }
-              </List.Body>
+                        <div style={{position: 'absolute', right: '78px', top: '30px', color: '#888'}}>{brand.brand_apply_review_status}</div>
+                      </div>
+                    </List.Item>
+                  )
+                }.bind(this))
+              }
             </List>
           </div>
         </TabBar.Item>

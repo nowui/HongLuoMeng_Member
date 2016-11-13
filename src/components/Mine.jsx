@@ -107,17 +107,15 @@ class Mine extends Component {
 
           <div className="container">
             <List style={{ marginTop: '40px' }}>
-              <List.Body>
-                <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, '')}>
-                  我的品牌
-                </List.Item>
-                <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, '/order/index')}>
-                  我的订单
-                </List.Item>
-                <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, '/delivery/index')}>
-                  收货地址
-                </List.Item>
-              </List.Body>
+              <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, '')}>
+                我的品牌
+              </List.Item>
+              <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, '/order/index')}>
+                我的订单
+              </List.Item>
+              <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, '/delivery/index')}>
+                收货地址
+              </List.Item>
             </List>
 
             <div style={{ margin: '100px 20px 0px 20px'}}>

@@ -108,17 +108,15 @@ class ProductIndex extends Component {
 
         <div className="container">
           <List style={{ marginTop: '40px' }}>
-            <List.Body>
-                <List.Item extra={this.state.product.productSkuList[0].product_price}>
-                  产品价格
-                </List.Item>
-                <List.Item extra={this.state.product.productSkuList[0].product_stock}>
-                  产品库存
-                </List.Item>
-                <List.Item extra={<Stepper {...getFieldProps('cart_product_amount', {initialValue: '1'})} showNumber size="small" max={99} min={1} onChange={this.onChange.bind(this)} />}>
-                  购买量
-                </List.Item>
-            </List.Body>
+            <List.Item extra={this.state.product.productSkuList[0].product_price}>
+              产品价格
+            </List.Item>
+            <List.Item extra={this.state.product.productSkuList[0].product_stock}>
+              产品库存
+            </List.Item>
+            <List.Item extra={<Stepper {...getFieldProps('cart_product_amount', {initialValue: '1'})} showNumber size="small" max={99} min={1} onChange={this.onChange.bind(this)} />}>
+              购买量
+            </List.Item>
           </List>
 
           <div style={{ margin: '100px 20px 0px 20px'}}>

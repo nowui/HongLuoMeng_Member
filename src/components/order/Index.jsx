@@ -69,19 +69,17 @@ class Order extends Component {
         </div>
         <div className="container">
           <List>
-            <List.Body>
-              {
-                this.state.list.map(function (item, index) {
-                  return (
-                    <List.Item key={index} arrow="horizontal" onClick={this.onClickListItem.bind(this, item.member_delivery_id)}>
-                      <div style={{marginTop: '20px', height: '50px'}}><span style={{color: '#777777'}}>订单号:</span> {item.order_no}</div>
-                      <div style={{height: '50px'}}><span style={{color: '#777777'}}>商品数量:</span> {item.order_payment_amount}</div>
-                      <div style={{marginBottom: '20px'}}><span style={{color: '#777777'}}>价格合计:</span> {item.order_payment_price}</div>
-                    </List.Item>
-                  )
-                }.bind(this))
-              }
-            </List.Body>
+            {
+              this.state.list.map(function (item, index) {
+                return (
+                  <List.Item key={index} arrow="horizontal" onClick={this.onClickListItem.bind(this, item.member_delivery_id)}>
+                    <div style={{marginTop: '20px', height: '50px'}}><span style={{color: '#777777'}}>订单号:</span> {item.order_no}</div>
+                    <div style={{height: '50px'}}><span style={{color: '#777777'}}>商品数量:</span> {item.order_payment_amount}</div>
+                    <div style={{marginBottom: '20px'}}><span style={{color: '#777777'}}>价格合计:</span> {item.order_payment_price}</div>
+                  </List.Item>
+                )
+              }.bind(this))
+            }
           </List>
         </div>
       </div>

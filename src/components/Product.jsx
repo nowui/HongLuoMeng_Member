@@ -20,7 +20,7 @@ import 'antd-mobile/lib/tab-bar/style/index.css'
 import 'antd-mobile/lib/segmented-control/style/index.css'
 import 'antd-mobile/lib/tabs/style/index.css'
 
-class Brand extends Component {
+class Product extends Component {
 
   constructor(props) {
     super(props)
@@ -38,7 +38,7 @@ class Brand extends Component {
   componentDidMount() {
     this.loadCategory()
 
-    this.loadBrand('')
+    this.loadProduct('')
   }
 
   loadCategory = function() {
@@ -61,7 +61,7 @@ class Brand extends Component {
     })
   }
 
-  loadBrand = function(category_id) {
+  loadProduct = function(category_id) {
     let self = this
 
     Helper.ajax({
@@ -106,7 +106,7 @@ class Brand extends Component {
   }
 
   onTabsChange(category_id) {
-    this.loadBrand(category_id)
+    this.loadProduct(category_id)
   }
 
   onClickListItem(product_id) {
@@ -169,31 +169,29 @@ class Brand extends Component {
               }
             </Tabs>
             <List>
-              <List.Body>
-                {
-                  this.state.productList.map(function (product, productIndex) {
-                    return (
-                      <List.Item key={product.product_id} arrow="horizontal" onClick={this.onClickListItem.bind(this, product.product_id)}>
-                        <div style={{ display: '-webkit-box', display: 'flex' }}>
-                          <img style={{ width: 64, marginRight: 8 }} src={Helper.host + product.product_image} />
-                          <div style={{ display: 'inline-block' }}>
-                            <p>{product.product_name}</p>
-                          </div>
-                          {
-                            product.product_is_apply ?
-                              product.product_is_review ?
-                              <div style={{position: 'absolute', right: '78px', top: '30px', color: '#888'}}>已签约</div>
-                              :
-                              <div style={{position: 'absolute', right: '78px', top: '30px', color: '#888'}}>待审核</div>
-                            :
-                            ''
-                          }
+              {
+                this.state.productList.map(function (product, productIndex) {
+                  return (
+                    <List.Item key={product.product_id} arrow="horizontal" onClick={this.onClickListItem.bind(this, product.product_id)}>
+                      <div style={{ display: '-webkit-box', display: 'flex' }}>
+                        <img style={{ width: 64, marginRight: 8 }} src={Helper.host + product.product_image} />
+                        <div style={{ display: 'inline-block' }}>
+                          <p>{product.product_name}</p>
                         </div>
-                      </List.Item>
-                    )
-                  }.bind(this))
-                }
-              </List.Body>
+                        {
+                          product.product_is_apply ?
+                            product.product_is_review ?
+                            <div style={{position: 'absolute', right: '78px', top: '30px', color: '#888'}}>已签约</div>
+                            :
+                            <div style={{position: 'absolute', right: '78px', top: '30px', color: '#888'}}>待审核</div>
+                          :
+                          ''
+                        }
+                      </div>
+                    </List.Item>
+                  )
+                }.bind(this))
+              }
             </List>
           </div>
         </TabBar.Item>
@@ -234,4 +232,4 @@ class Brand extends Component {
   }
 }
 
-export default withRouter(Brand)
+export default withRouter(Product)

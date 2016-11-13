@@ -111,46 +111,44 @@ class DeliveryDetail extends Component {
         </div>
         <div className="container">
           <List>
-            <List.Body>
-              <InputItem {...getFieldProps('member_delivery_name', {
-                  initialValue: ''
-                })}
-                clear
-                placeholder="请输入收货人"
-                >
-                  收货人
-                </InputItem>
-              <InputItem {...getFieldProps('member_delivery_phone', {
-                  initialValue: ''
-                })}
-                clear
-                placeholder="请输入联系电话"
-                >
-                  联系电话
-                </InputItem>
-              <Picker data={this.state.china.children} cols={3} title="选择地区" {...getFieldProps('member_delivery_china', {
-                initialValue: ["014d793d0afd4460ae90c442a64fd207", "48ddbc96c19f47cb8fcd67ad6a7e2cbc", "6c494c5b41024ba08f6b22ec2056427c"]
-              })}
-              >
-                <List.Item arrow="horizontal">省市区选择</List.Item>
-              </Picker>
-              <InputItem {...getFieldProps('member_delivery_address', {
-                  initialValue: ''
-                })}
-                clear
-                placeholder="请输入详细地址"
-                >
-                  详细地址
-                </InputItem>
-              <InputItem {...getFieldProps('member_delivery_zip', {
-                  initialValue: ''
-                })}
-                clear
-                placeholder="请输入邮政编码"
-                >
-                  邮政编码
-                </InputItem>
-            </List.Body>
+          <InputItem {...getFieldProps('member_delivery_name', {
+              initialValue: ''
+            })}
+            clear
+            placeholder="请输入收货人"
+            >
+              收货人
+            </InputItem>
+          <InputItem {...getFieldProps('member_delivery_phone', {
+              initialValue: ''
+            })}
+            clear
+            placeholder="请输入联系电话"
+            >
+              联系电话
+            </InputItem>
+          <Picker data={this.state.china.children} cols={3} title="选择地区" {...getFieldProps('member_delivery_china', {
+            initialValue: ["014d793d0afd4460ae90c442a64fd207", "48ddbc96c19f47cb8fcd67ad6a7e2cbc", "6c494c5b41024ba08f6b22ec2056427c"]
+          })}
+          >
+            <List.Item arrow="horizontal">省市区选择</List.Item>
+          </Picker>
+          <InputItem {...getFieldProps('member_delivery_address', {
+              initialValue: ''
+            })}
+            clear
+            placeholder="请输入详细地址"
+            >
+              详细地址
+            </InputItem>
+          <InputItem {...getFieldProps('member_delivery_zip', {
+              initialValue: ''
+            })}
+            clear
+            placeholder="请输入邮政编码"
+            >
+              邮政编码
+            </InputItem>
           </List>
           <div style={{ margin: '100px 20px 0px 20px'}}>
             <Button type="primary" onClick={this.onClickSubmit.bind(this)}>确定</Button>
