@@ -24,8 +24,8 @@ class Login extends Component {
     super(props)
 
     this.state = {
-      user_phone: '15900672218',
-      user_password: '123456'
+      user_phone: '18668141979',
+      user_password: '1'
     }
   }
 
