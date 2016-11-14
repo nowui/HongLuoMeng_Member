@@ -148,7 +148,6 @@ class Cart extends Component {
 
         <div className="container">
           <List style={{ marginTop: '40px' }}>
-            <List.Body>
               {
                 this.state.cartList.map(function (cart, index) {
                   return (
@@ -158,10 +157,8 @@ class Cart extends Component {
                   )
                 }.bind(this))
               }
-            </List.Body>
           </List>
           <List style={{ marginTop: '40px' }}>
-            <List.Body>
                 <InputItem {...getFieldProps('order_message', {
                   initialValue: '买买买'
                 })}
@@ -233,7 +230,6 @@ class Cart extends Component {
                 >
                   邮政编码
                 </InputItem>
-            </List.Body>
           </List>
 
           <div style={{ margin: '100px 20px 100px 20px'}}>

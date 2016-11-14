@@ -38,7 +38,7 @@ class Order extends Component {
       },
       success: function(data) {
         self.setState({
-          list: data
+          list: data.list
         })
       },
       complete: function() {
