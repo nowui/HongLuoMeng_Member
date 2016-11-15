@@ -93,7 +93,6 @@ class Brand extends Component {
         limit: 0,
         category_id: category_id
       },
-      unLoad: true,
       success: function(data) {
         self.setState({
           brandList: data
@@ -121,6 +120,8 @@ class Brand extends Component {
   onValueChange(value) {
     if(value == '我的品牌') {
       this.loadMy('')
+    } else {
+      this.loadBrand('')
     }
   }
 
@@ -165,19 +166,20 @@ class Brand extends Component {
               onValueChange={this.onValueChange.bind(this)}
             />
           </div>
-          <div className="container" style={{marginTop: '20px'}}>
 
-            <Tabs defaultActiveKey="" animated={false} onChange={this.onTabsChange.bind(this)}>
-              {
-                this.state.categoryList.map(function (category, categoryIndex) {
-                  return (
-                    <TabPane tab={category.category_name} key={category.category_id}>
+          <Tabs defaultActiveKey="" animated={false} onChange={this.onTabsChange.bind(this)}>
+            {
+              this.state.categoryList.map(function (category, categoryIndex) {
+                return (
+                  <TabPane tab={category.category_name} key={category.category_id}>
 
-                    </TabPane>
-                  )
-                }.bind(this))
-              }
-            </Tabs>
+                  </TabPane>
+                )
+              }.bind(this))
+            }
+          </Tabs>
+
+          <div className="container" style={{marginTop: '81px', paddingBottom: '100px'}}>
             <List>
               {
                 this.state.brandList.map(function (brand, brandIndex) {

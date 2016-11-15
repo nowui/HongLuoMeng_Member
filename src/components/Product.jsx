@@ -155,26 +155,27 @@ class Product extends Component {
           <div className="header">
             <NavBar mode="light" iconName={false} rightContent={[<div key="0" onClick={this.onClickCart.bind(this)}>购物车</div>]}>产品列表</NavBar>
           </div>
-          <div className="container" style={{marginTop: '20px'}}>
 
-            <Tabs defaultActiveKey="" animated={false} onChange={this.onTabsChange.bind(this)}>
-              {
-                this.state.categoryList.map(function (category, categoryIndex) {
-                  return (
-                    <TabPane tab={category.category_name} key={category.category_id}>
+          <Tabs defaultActiveKey="" animated={false} onChange={this.onTabsChange.bind(this)}>
+            {
+              this.state.categoryList.map(function (category, categoryIndex) {
+                return (
+                  <TabPane tab={category.category_name} key={category.category_id}>
 
-                    </TabPane>
-                  )
-                }.bind(this))
-              }
-            </Tabs>
+                  </TabPane>
+                )
+              }.bind(this))
+            }
+          </Tabs>
+
+          <div className="container" style={{marginTop: '98px', paddingBottom: '100px'}}>
             <List>
               {
                 this.state.productList.map(function (product, productIndex) {
                   return (
                     <List.Item key={product.product_id} arrow="horizontal" onClick={this.onClickListItem.bind(this, product.product_id)}>
                       <div style={{ display: '-webkit-box', display: 'flex' }}>
-                        <img style={{ width: 64, marginRight: 8 }} src={Helper.host + product.product_image} />
+                        <img style={{ width: 64, marginTop: 20 }} src={Helper.host + product.product_image} />
                         <div style={{ display: 'inline-block' }}>
                           <p>{product.product_name}</p>
                         </div>

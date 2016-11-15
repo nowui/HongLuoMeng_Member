@@ -103,11 +103,14 @@ class ProductIndex extends Component {
     return (
       <div>
         <div className="header">
-          <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)} rightContent={[<div key="0" onClick={this.onClickCart.bind(this)}>购物车</div>]}>{this.state.product.product_name}</NavBar>
+          <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)} rightContent={[<div key="0" onClick={this.onClickCart.bind(this)}>购物车</div>]}>商品详情</NavBar>
         </div>
 
         <div className="container">
           <List style={{ marginTop: '40px' }}>
+            <List.Item>
+              {this.state.product.product_name}
+            </List.Item>
             <List.Item extra={this.state.product.productSkuList[0].product_price}>
               产品价格
             </List.Item>
