@@ -15,76 +15,87 @@ import 'antd-mobile/lib/icon/style/index.css'
 
 class Order extends Component {
 
-  constructor(props) {
-    super(props)
+    constructor(props) {
+        super(props)
 
-    this.state = {
-      list: []
+        this.state = {
+            list: []
+        }
     }
-  }
 
-  componentDidMount() {
-    this.load()
-  }
+    componentDidMount() {
+        this.load()
+    }
 
-  load = function(currentPage) {
-    let self = this
+    load = function(currentPage) {
+        let self = this
 
-    Helper.ajax({
-      url: '/order/list/get',
-      data: {
-        page: 0,
-        limit: 0
-      },
-      success: function(data) {
-        self.setState({
-          list: data.list
+        Helper.ajax({
+            url: '/order/list/get',
+            data: {
+                page: 0,
+                limit: 0
+            },
+            success: function(data) {
+                self.setState({
+                    list: data
+                })
+            },
+            complete: function() {}
         })
-      },
-      complete: function() {
+    }
 
-      }
-    })
-  }
+    onClickListItem(id) {
+        return
+        this.props.router.push({
+            pathname: '/order/edit/' + id,
+            query: {
 
-  onClickListItem(id) {
-    return
-    this.props.router.push({
-      pathname: '/order/edit/' + id,
-      query: {
+            }
+        })
+    }
 
-      }
-    })
-  }
+    onClickLeft() {
+        this.props.router.goBack()
+    }
 
-  onClickLeft() {
-    this.props.router.goBack()
-  }
-
-  render() {
-    return (
-      <div>
+    render() {
+        return (
+            <div>
         <div className="header">
           <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)}>我的订单</NavBar>
         </div>
         <div className="container">
           <List>
             {
-              this.state.list.map(function (item, index) {
+            this.state.list.map(function(item, index) {
                 return (
-                  <List.Item key={index} arrow="horizontal" onClick={this.onClickListItem.bind(this, item.member_delivery_id)}>
-                    <div style={{marginTop: '20px', height: '50px'}}><span style={{color: '#777777'}}>订单号:</span> {item.order_no}</div>
-                    <div style={{height: '50px'}}><span style={{color: '#777777'}}>商品数量:</span> {item.order_payment_amount}</div>
-                    <div style={{marginBottom: '20px'}}><span style={{color: '#777777'}}>价格合计:</span> {item.order_payment_price}</div>
+                    <List.Item key={index} arrow="horizontal" onClick={this.onClickListItem.bind(this, item.member_delivery_id)}>
+                    <div style={{
+                        marginTop: '20px',
+                        height: '50px'
+                    }}><span style={{
+                        color: '#777777'
+                    }}>订单号:</span> {item.order_no}</div>
+                    <div style={{
+                        height: '50px'
+                    }}><span style={{
+                        color: '#777777'
+                    }}>商品数量:</span> {item.order_payment_amount}</div>
+                    <div style={{
+                        marginBottom: '20px'
+                    }}><span style={{
+                        color: '#777777'
+                    }}>价格合计:</span> {item.order_payment_price}</div>
                   </List.Item>
                 )
-              }.bind(this))
+            }.bind(this))
             }
           </List>
         </div>
       </div>
-    )
-  }
+        )
+    }
 }
 
 export default withRouter(Order)
