@@ -17,96 +17,117 @@ import 'antd-mobile/lib/tab-bar/style/index.css'
 
 class Mine extends Component {
 
-  constructor(props) {
-    super(props)
+    constructor(props) {
+        super(props)
 
-    this.state = {
-      selectedTab: 'mineTab'
+        this.state = {
+            selectedTab: 'mineTab'
+        }
     }
-  }
 
-  componentDidMount() {
+    componentDidMount() {}
 
-  }
+    onClickLeft() {
+        this.props.router.goBack()
+    }
 
-  onClickLeft() {
-    this.props.router.goBack()
-  }
+    onClickLogout() {
+        Helper.logout()
 
-  onClickLogout() {
-    Helper.logout()
+        this.props.router.push({
+            pathname: '/login',
+            query: {
 
-    this.props.router.push({
-      pathname: '/login',
-      query: {
+            }
+        })
+    }
 
-      }
-    })
-  }
+    onClickListItem(url) {
+        this.props.router.push({
+            pathname: url,
+            query: {
 
-  onClickListItem(url) {
-    this.props.router.push({
-      pathname: url,
-      query: {
+            }
+        })
+    }
 
-      }
-    })
-  }
+    onClickTest() {
+        Helper.ajax({
+            url: '/order/sign',
+            data: {},
+            success: function(data) {},
+            complete: function() {}
+        })
+    }
 
-  render() {
-    return (
-      <TabBar
-        unselectedTintColor="#949494"
-        tintColor="#33A3F4"
-        barTintColor="white"
-      >
+    render() {
+        return (
+            <TabBar
+            unselectedTintColor="#949494"
+            tintColor="#33A3F4"
+            barTintColor="white"
+            >
         <TabBar.Item
-          icon={{ uri: require('../assets/image/product.png') }}
-          selectedIcon={{ uri: require('../assets/image/product_active.png') }}
-          title="课程"
-          key="课程"
-          selected={this.state.selectedTab === 'productTab'}
-          onPress={() => {
-            this.props.router.push({
-              pathname: '/product',
-              query: {
+            icon={{
+                uri: require('../assets/image/product.png')
+            }}
+            selectedIcon={{
+                uri: require('../assets/image/product_active.png')
+            }}
+            title="课程"
+            key="课程"
+            selected={this.state.selectedTab === 'productTab'}
+            onPress={() => {
+                this.props.router.push({
+                    pathname: '/product',
+                    query: {
 
-              }
-            })
-          }}
-        >
+                    }
+                })
+            }}
+            >
         </TabBar.Item>
         <TabBar.Item
-          icon={{ uri: require('../assets/image/brand.png') }}
-          selectedIcon={{ uri: require('../assets/image/brand_active.png') }}
-          title="品牌"
-          key="品牌"
-          selected={this.state.selectedTab === 'brandTab'}
-          onPress={() => {
-            this.props.router.push({
-              pathname: '/brand',
-              query: {
+            icon={{
+                uri: require('../assets/image/brand.png')
+            }}
+            selectedIcon={{
+                uri: require('../assets/image/brand_active.png')
+            }}
+            title="品牌"
+            key="品牌"
+            selected={this.state.selectedTab === 'brandTab'}
+            onPress={() => {
+                this.props.router.push({
+                    pathname: '/brand',
+                    query: {
 
-              }
-            })
-          }}
-        >
+                    }
+                })
+            }}
+            >
         </TabBar.Item>
         <TabBar.Item
-          icon={{ uri: require('../assets/image/mine.png') }}
-          selectedIcon={{ uri: require('../assets/image/mine_active.png') }}
-          title="我的"
-          key="我的"
-          selected={this.state.selectedTab === 'mineTab'}
-          onPress={() => {
-          }}
-        >
+            icon={{
+                uri: require('../assets/image/mine.png')
+            }}
+            selectedIcon={{
+                uri: require('../assets/image/mine_active.png')
+            }}
+            title="我的"
+            key="我的"
+            selected={this.state.selectedTab === 'mineTab'}
+            onPress={() => {
+            }}
+            >
           <div className="header">
             <NavBar mode="light" iconName={false}>个人中心</NavBar>
           </div>
 
           <div className="container">
-            <List style={{ marginTop: '40px' }}>
+            <List style={{
+                marginTop: '40px'
+            }}>
               <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, '')}>
                 我的品牌
               </List.Item>
@@ -118,14 +139,25 @@ class Mine extends Component {
               </List.Item>
             </List>
 
-            <div style={{ margin: '100px 20px 0px 20px'}}>
-              <Button onClick={this.onClickLogout.bind(this)} style={{backgroundColor: '#dd514c', color: '#ffffff'}}>退出</Button>
+            <div style={{
+                margin: '100px 20px 0px 20px'
+            }}>
+              <Button onClick={this.onClickLogout.bind(this)} style={{
+                backgroundColor: '#dd514c',
+                color: '#ffffff'
+            }}>退出</Button>
+            </div>
+
+            <div style={{
+                margin: '100px 20px 0px 20px'
+            }}>
+              <Button onClick={this.onClickTest.bind(this)} type="default">测试</Button>
             </div>
           </div>
         </TabBar.Item>
       </TabBar>
-    )
-  }
+        )
+    }
 }
 
 export default withRouter(Mine)

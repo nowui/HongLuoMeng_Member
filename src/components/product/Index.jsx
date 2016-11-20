@@ -109,10 +109,10 @@ class ProductIndex extends Component {
             <List.Item>
               {this.state.product.product_name}
             </List.Item>
-            <List.Item extra={this.state.product.productSkuList[0].product_price}>
+            <List.Item extra={this.state.product.product_price}>
               产品价格
             </List.Item>
-            <List.Item extra={this.state.product.productSkuList[0].product_stock}>
+            <List.Item extra={this.state.product.product_stock}>
               产品库存
             </List.Item>
             <List.Item extra={<Stepper {...getFieldProps('product_amount', {
