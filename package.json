@@ -39,9 +39,6 @@
     "glob": "^7.0.3",
     "pre-commit": "1.x"
   },
-  "pre-commit": [
-    "lint"
-  ],
   "scripts": {
     "build": "atool-build",
     "lint": "eslint --ext .js,.jsx src",
