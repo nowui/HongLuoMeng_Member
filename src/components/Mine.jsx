@@ -147,12 +147,6 @@ class Mine extends Component {
                 color: '#ffffff'
             }}>退出</Button>
             </div>
-
-            <div style={{
-                margin: '100px 20px 0px 20px'
-            }}>
-              <Button onClick={this.onClickTest.bind(this)} type="default">测试</Button>
-            </div>
           </div>
         </TabBar.Item>
       </TabBar>

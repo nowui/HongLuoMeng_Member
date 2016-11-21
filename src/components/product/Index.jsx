@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { withRouter, Link } from 'react-router'
-import { createForm } from 'rc-form'
+import React, {Component} from 'react'
+import {withRouter, Link} from 'react-router'
+import {createForm} from 'rc-form'
 import Helper from '../../common/Helper'
 
 import NavBar from 'antd-mobile/lib/nav-bar'
@@ -40,7 +40,7 @@ class ProductIndex extends Component {
         this.load()
     }
 
-    load = function() {
+    load = function () {
         let self = this
 
         Helper.ajax({
@@ -49,12 +49,13 @@ class ProductIndex extends Component {
                 product_id: self.props.params.product_id
             },
             unLoad: false,
-            success: function(data) {
+            success: function (data) {
                 self.setState({
                     product: data
                 })
             },
-            complete: function() {}
+            complete: function () {
+            }
         })
     }
 
@@ -71,9 +72,7 @@ class ProductIndex extends Component {
     onClickCart() {
         this.props.router.push({
             pathname: '/cart',
-            query: {
-
-            }
+            query: {}
         })
     }
 
@@ -83,13 +82,14 @@ class ProductIndex extends Component {
         Helper.ajax({
             url: '/cart/save',
             data: {
-                product_sku_id: this.state.product.productSkuList[0].product_sku_id,
+                product_sku_id: this.state.product.product_sku_id,
                 product_amount: this.props.form.getFieldValue('product_amount')
             },
-            success: function(data) {
+            success: function (data) {
                 Toast.success('操作成功', Helper.duration)
             },
-            complete: function() {}
+            complete: function () {
+            }
         })
     }
 
@@ -98,43 +98,42 @@ class ProductIndex extends Component {
 
         return (
             <div>
-        <div className="header">
-          <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)} rightContent={[<div key="0" onClick={this.onClickCart.bind(this)}>购物车</div>]}>商品详情</NavBar>
-        </div>
+                <div className="header">
+                    <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)}
+                            rightContent={[<div key="0" onClick={this.onClickCart.bind(this)}>购物车</div>]}>商品详情</NavBar>
+                </div>
 
-        <div className="container">
-          <List style={{
-                marginTop: '40px'
-            }}>
-            <List.Item>
-              {this.state.product.product_name}
-            </List.Item>
-            <List.Item extra={this.state.product.product_price}>
-              产品价格
-            </List.Item>
-            <List.Item extra={this.state.product.product_stock}>
-              产品库存
-            </List.Item>
-            <List.Item extra={<Stepper {...getFieldProps('product_amount', {
-                initialValue: '1'
-            })} showNumber size="small" max={99} min={1} onChange={this.onChange.bind(this)} />}>
-              购买量
-            </List.Item>
-          </List>
+                <div className="container">
+                    <List style={{
+                        marginTop: '40px'
+                    }}>
+                        <List.Item>
+                            {this.state.product.product_name}
+                        </List.Item>
+                        <List.Item extra={this.state.product.product_price}>
+                            产品价格
+                        </List.Item>
+                        <List.Item extra={this.state.product.product_stock}>
+                            产品库存
+                        </List.Item>
+                        <List.Item extra={<Stepper {...getFieldProps('product_amount', {
+                            initialValue: '1'
+                        })} showNumber size="small" max={99} min={1} onChange={this.onChange.bind(this)}/>}>
+                            购买量
+                        </List.Item>
+                    </List>
 
-          <div style={{
-                margin: '100px 20px 0px 20px'
-            }}>
-            <Button type="primary" onClick={this.onClickAddToCart.bind(this)}>加入购物车</Button>
-          </div>
-        </div>
-      </div>
+                    <div style={{
+                        margin: '100px 20px 0px 20px'
+                    }}>
+                        <Button type="primary" onClick={this.onClickAddToCart.bind(this)}>加入购物车</Button>
+                    </div>
+                </div>
+            </div>
         )
     }
 }
 
-ProductIndex = createForm({
-
-})(ProductIndex)
+ProductIndex = createForm({})(ProductIndex)
 
 export default withRouter(ProductIndex)

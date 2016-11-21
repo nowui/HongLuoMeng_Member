@@ -33,6 +33,7 @@ class Order extends Component {
         Helper.ajax({
             url: '/order/list/get',
             data: {
+                order_flow_status: '',
                 page: 0,
                 limit: 0
             },

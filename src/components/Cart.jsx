@@ -103,6 +103,7 @@ class Cart extends Component {
             }
 
             values.cartList = cartList
+            values.order_pay_type = 'ALI_PAY'
 
             Helper.ajax({
                 url: '/order/cart/save',
