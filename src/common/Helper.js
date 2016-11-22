@@ -41,7 +41,7 @@ const Helper = {
                 'Accept': 'application/json',
                 'Content-Type': 'application/json',
                 'token': this.getToken(),
-                'platform': 'web',
+                'platform': 'WEB',
                 'version': '1.0.0'
             },
             data: JSON.stringify(config.data),

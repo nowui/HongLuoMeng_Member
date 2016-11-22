@@ -27,10 +27,6 @@ class Mine extends Component {
 
     componentDidMount() {}
 
-    onClickLeft() {
-        this.props.router.goBack()
-    }
-
     onClickLogout() {
         Helper.logout()
 
@@ -53,8 +49,10 @@ class Mine extends Component {
 
     onClickTest() {
         Helper.ajax({
-            url: '/order/sign',
-            data: {},
+            url: '/order/payed',
+            data: {
+                order_id: '46eb688254054b9caf44257e110b2f34'
+            },
             success: function(data) {},
             complete: function() {}
         })
