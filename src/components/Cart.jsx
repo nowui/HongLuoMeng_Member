@@ -103,10 +103,13 @@ class Cart extends Component {
             }
 
             values.cartList = cartList
+            values.product_sku_id = self.state.cartList[0].product_sku_id
+            values.product_amount = self.state.cartList[0].product_amount
             values.order_pay_type = 'ALI_PAY'
+            values.member_delivery_id = '4de037bc33324d58b7a1cb7c01c3ebde'
 
             Helper.ajax({
-                url: '/order/cart/save',
+                url: '/order/save',
                 data: values,
                 success: function(data) {},
                 complete: function() {}
