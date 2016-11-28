@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { withRouter } from 'react-router'
-import { createForm } from 'rc-form'
+import React, {Component} from 'react'
+import {withRouter} from 'react-router'
+import {createForm} from 'rc-form'
 import Helper from '../common/Helper'
 
 import NavBar from 'antd-mobile/lib/nav-bar'
@@ -18,127 +18,121 @@ import 'antd-mobile/lib/toast/style/index.css'
 
 class Register extends Component {
 
-  constructor(props) {
-    super(props)
+    constructor(props) {
+        super(props)
 
-    this.state = {
-      user_phone: '15900672218',
-      user_password: '123456'
-    }
-  }
-
-  componentDidMount() {
-    this.props.form.setFieldsValue(this.state)
-  }
-
-  onClickSubmit() {
-    let self = this
-
-    self.props.form.validateFields((errors, values) => {
-      if (!!errors) {
-        let message = ''
-
-        for(let e in errors) {
-          message += errors[e]['errors'][0]['message'] + ';'
+        this.state = {
+            user_phone: '15900672218',
+            user_password: '123456'
         }
+    }
 
-        Toast.fail(message, Helper.duration)
+    componentDidMount() {
+        this.props.form.setFieldsValue(this.state)
+    }
 
-        return
-      }
+    onClickSubmit() {
+        let self = this
 
-      if(values.user_phone == '') {
-        Toast.fail('帐号为空', Helper.duration)
+        self.props.form.validateFields((errors, values) => {
+            if (!!errors) {
+                let message = ''
 
-        return
-      }
+                for (let e in errors) {
+                    message += errors[e]['errors'][0]['message'] + ';'
+                }
 
-      if(values.user_password == '') {
-        Toast.fail('密码为空', Helper.duration)
+                Toast.fail(message, Helper.duration)
 
-        return
-      }
+                return
+            }
 
-      Helper.ajax({
-        url: '/member/register',
-        data: values,
-        success: function(data) {
-          Helper.login(data.token, data.student_name)
+            if (values.user_phone == '') {
+                Toast.fail('帐号为空', Helper.duration)
 
-          self.props.router.push({
-            pathname: '/index',
-            query: {
+                return
+            }
+
+            if (values.user_password == '') {
+                Toast.fail('密码为空', Helper.duration)
+
+                return
+            }
+
+            Helper.ajax({
+                url: '/member/password/update',
+                data: values,
+                success: function (data) {
+                    Helper.login(data.token, data.student_name)
+
+                    self.props.router.push({
+                        pathname: '/index',
+                        query: {}
+                    })
+                },
+                complete: function () {
+
+                }
+            })
+        })
+    }
+
+    onClickSms() {
+        Helper.ajax({
+            url: '/sms/password',
+            data: {
+                sms_phone: '15900672218'
+            },
+            success: function (data) {
+
+            },
+            complete: function () {
 
             }
-          })
-        },
-        complete: function() {
+        })
+    }
 
-        }
-      })
-    })
-  }
+    render() {
+        const {getFieldProps} = this.props.form
 
-  onClickSms() {
-    Helper.ajax({
-      url: '/sms/register',
-      data: {
-        sms_phone: '15900672218'
-      },
-      success: function(data) {
-
-      },
-      complete: function() {
-
-      }
-    })
-  }
-
-  render() {
-    const { getFieldProps } = this.props.form
-
-    return (
-      <div>
-        <NavBar mode="light" iconName={false}>会员注册</NavBar>
-        <List style={{ margin: '100px 20px 0px 20px'}}>
-          <List.Body>
-            <InputItem {...getFieldProps('user_phone', {
-                initialValue: ''
-              })}
-              clear
-              placeholder="请输入帐号"
-              >帐号</InputItem>
-            <InputItem
-              {...getFieldProps('user_password', {
-                initialValue: ''
-              })}
-              type="password"
-              format="password"
-              clear
-              placeholder="请输入密码"
-            >密码</InputItem>
-            <InputItem
-              {...getFieldProps('sms_code', {
-                initialValue: ''
-              })}
-              clear
-              placeholder="请输入验证码"
-            >验证码</InputItem>
-          </List.Body>
-        </List>
-        <div style={{ margin: '100px 20px 0px 20px'}}>
-          <Button type="primary" onClick={this.onClickSubmit.bind(this)}>确定</Button>
-        </div>
-        <div style={{ margin: '100px 20px 0px 20px'}}>
-          <Button type="primary" onClick={this.onClickSms.bind(this)}>发送验证码</Button>
-        </div>
-      </div>
-    )
-  }
+        return (
+            <div>
+                <NavBar mode="light" iconName={false}>会员注册</NavBar>
+                <List style={{margin: '100px 20px 0px 20px'}}>
+                    <InputItem {...getFieldProps('user_phone', {
+                        initialValue: ''
+                    })}
+                               clear
+                               placeholder="请输入帐号"
+                    >帐号</InputItem>
+                    <InputItem
+                        {...getFieldProps('user_password', {
+                            initialValue: ''
+                        })}
+                        type="password"
+                        format="password"
+                        clear
+                        placeholder="请输入密码"
+                    >密码</InputItem>
+                    <InputItem
+                        {...getFieldProps('sms_code', {
+                            initialValue: ''
+                        })}
+                        clear
+                        placeholder="请输入验证码"
+                    >验证码</InputItem>
+                </List>
+                <div style={{margin: '100px 20px 0px 20px'}}>
+                    <Button type="primary" onClick={this.onClickSubmit.bind(this)}>确定</Button>
+                </div>
+                <div style={{margin: '100px 20px 0px 20px'}}>
+                    <Button type="primary" onClick={this.onClickSms.bind(this)}>发送验证码</Button>
+                </div>
+            </div>
+        )
+    }
 }
 
-Register = createForm({
-
-})(Register)
+Register = createForm({})(Register)
 
 export default withRouter(Register)

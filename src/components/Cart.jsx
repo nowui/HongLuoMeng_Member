@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
-import { withRouter, Link } from 'react-router'
-import { createForm } from 'rc-form'
+import React, {Component} from 'react'
+import {withRouter, Link} from 'react-router'
+import {createForm} from 'rc-form'
 import Helper from '../common/Helper'
 
 import NavBar from 'antd-mobile/lib/nav-bar'
@@ -34,22 +34,23 @@ class Cart extends Component {
         this.load()
     }
 
-    load = function(currentPage) {
+    load = function (currentPage) {
         let self = this
 
         Helper.ajax({
             url: '/cart/list/get',
             data: {},
-            success: function(data) {
+            success: function (data) {
                 self.setState({
                     cartList: data
                 })
             },
-            complete: function() {}
+            complete: function () {
+            }
         })
     }
 
-    update = function(cart_id, product_amount) {
+    update = function (cart_id, product_amount) {
         let self = this
 
         Helper.ajax({
@@ -58,14 +59,15 @@ class Cart extends Component {
                 cart_id: cart_id,
                 product_amount: product_amount
             },
-            success: function(data) {
+            success: function (data) {
                 self.load()
             },
-            complete: function() {}
+            complete: function () {
+            }
         })
     }
 
-    delete = function(cart_id) {
+    delete = function (cart_id) {
         let self = this
 
         Helper.ajax({
@@ -73,10 +75,11 @@ class Cart extends Component {
             data: {
                 cart_id: cart_id
             },
-            success: function(data) {
+            success: function (data) {
                 self.load()
             },
-            complete: function() {}
+            complete: function () {
+            }
         })
     }
 
@@ -103,16 +106,18 @@ class Cart extends Component {
             }
 
             values.cartList = cartList
-            values.product_sku_id = self.state.cartList[0].product_sku_id
-            values.product_amount = self.state.cartList[0].product_amount
+            //values.product_sku_id = self.state.cartList[0].product_sku_id
+            //values.product_amount = self.state.cartList[0].product_amount
             values.order_pay_type = 'ALI_PAY'
             values.member_delivery_id = '4de037bc33324d58b7a1cb7c01c3ebde'
 
             Helper.ajax({
-                url: '/order/save',
+                url: '/order/cart/save',
                 data: values,
-                success: function(data) {},
-                complete: function() {}
+                success: function (data) {
+                },
+                complete: function () {
+                }
             })
         })
     }
@@ -120,9 +125,7 @@ class Cart extends Component {
     onClickListItem(id) {
         this.props.router.push({
             pathname: '/mycourse',
-            query: {
-
-            }
+            query: {}
         })
     }
 
@@ -131,115 +134,51 @@ class Cart extends Component {
 
         return (
             <div>
-        <div className="header">
-          <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)}>购物车</NavBar>
-        </div>
+                <div className="header">
+                    <NavBar mode="light" leftContent="返回" onLeftClick={this.onClickLeft.bind(this)}>购物车</NavBar>
+                </div>
 
-        <div className="container">
-          <List style={{
-                marginTop: '40px'
-            }}>
-              {
-            this.state.cartList.map(function(cart, index) {
-                return (
-                    <List.Item key={cart.cart_id} extra={<Stepper {...getFieldProps('product_amount', {
-                        initialValue: cart.product_amount
-                    })} showNumber size="small" max={99} min={0} onChange={this.onChange.bind(this, cart.cart_id)} />}>
-                      {cart.product_name}
-                    </List.Item>
-                )
-            }.bind(this))
-            }
-          </List>
-          <List style={{
-                marginTop: '40px'
-            }}>
-                <InputItem {...getFieldProps('order_message', {
-                initialValue: '买买买'
-            })}
-            clear
-            placeholder="请输入买家留言"
-            >
-                  买家留言
-                </InputItem>
+                <div className="container">
+                    <List style={{
+                        marginTop: '40px'
+                    }}>
+                        {
+                            this.state.cartList.map(function (cart, index) {
+                                return (
+                                    <List.Item key={cart.cart_id} extra={<Stepper {...getFieldProps('product_amount', {
+                                        initialValue: cart.product_amount
+                                    })} showNumber size="small" max={99} min={0}
+                                                                                  onChange={this.onChange.bind(this, cart.cart_id)}/>}>
+                                        {cart.product_name}
+                                    </List.Item>
+                                )
+                            }.bind(this))
+                        }
+                    </List>
+                    <List style={{
+                        marginTop: '40px'
+                    }}>
+                        <InputItem {...getFieldProps('order_message', {
+                            initialValue: '买买买'
+                        })}
+                                   clear
+                                   placeholder="请输入买家留言"
+                        >
+                            买家留言
+                        </InputItem>
+                    </List>
 
-                <InputItem {...getFieldProps('order_delivery_name', {
-                initialValue: '钟永强'
-            })}
-            clear
-            placeholder="请输入收货人"
-            >
-                  收货人
-                </InputItem>
-
-                <InputItem {...getFieldProps('order_delivery_phone', {
-                initialValue: '15900672218'
-            })}
-            clear
-            placeholder="请输入联系电话"
-            >
-                  联系电话
-                </InputItem>
-
-                <InputItem {...getFieldProps('order_delivery_province', {
-                initialValue: '4ac8cf8a44404bf6b2eeb01a8642efa5'
-            })}
-            clear
-            placeholder="请输入省份"
-            >
-                  省份
-                </InputItem>
-
-                <InputItem {...getFieldProps('order_delivery_city', {
-                initialValue: '5a144651cf184628af38c7a838d479d5'
-            })}
-            clear
-            placeholder="请输入城市"
-            >
-                  城市
-                </InputItem>
-
-                <InputItem {...getFieldProps('order_delivery_area', {
-                initialValue: 'b730987ddc8b4eb39e35270987b8c573'
-            })}
-            clear
-            placeholder="请输入地区"
-            >
-                  地区
-                </InputItem>
-
-                <InputItem {...getFieldProps('order_delivery_address', {
-                initialValue: '联航路1188号9幢'
-            })}
-            clear
-            placeholder="请输入详细地址"
-            >
-                  详细地址
-                </InputItem>
-
-                <InputItem {...getFieldProps('order_delivery_zip', {
-                initialValue: '201100'
-            })}
-            clear
-            placeholder="请输入邮政编码"
-            >
-                  邮政编码
-                </InputItem>
-          </List>
-
-          <div style={{
-                margin: '100px 20px 100px 20px'
-            }}>
-            <Button type="primary" onClick={this.onClickPay.bind(this)}>付款</Button>
-          </div>
-        </div>
-      </div>
+                    <div style={{
+                        margin: '100px 20px 100px 20px'
+                    }}>
+                        <Button type="primary" onClick={this.onClickPay.bind(this)}>付款</Button>
+                    </div>
+                </div>
+            </div>
         )
     }
 }
 
-Cart = createForm({
-
-})(Cart)
+Cart = createForm({})(Cart)
 
 export default withRouter(Cart)
