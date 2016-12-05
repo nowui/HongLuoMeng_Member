@@ -33,7 +33,7 @@ class Order extends Component {
         Helper.ajax({
             url: '/order/list/get',
             data: {
-                order_flow_status: '',
+                order_status: '',
                 page: 1,
                 limit: 5
             },
@@ -92,7 +92,7 @@ class Order extends Component {
                                             marginBottom: '20px'
                                         }}><span style={{
                                             color: '#777777'
-                                        }}>状态:</span> {item.order_flow_status}</div>
+                                        }}>状态:</span> {item.order_status}</div>
                                     </List.Item>
                                 )
                             }.bind(this))
