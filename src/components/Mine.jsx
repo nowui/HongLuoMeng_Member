@@ -138,6 +138,9 @@ class Mine extends Component {
               <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, '/delivery/index')}>
                 收货地址
               </List.Item>
+              <List.Item arrow="horizontal" onClick={this.onClickListItem.bind(this, '/topic/index')}>
+                红圈
+              </List.Item>
             </List>
 
             <div style={{

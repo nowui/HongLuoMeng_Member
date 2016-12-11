@@ -34,7 +34,7 @@ class DeliveryDetail extends Component {
     }
   }
 
-  load = function(currentPage) {
+  load = function() {
     let self = this
 
     Helper.ajax({
