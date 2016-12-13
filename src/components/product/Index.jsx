@@ -93,6 +93,39 @@ class ProductIndex extends Component {
         })
     }
 
+    onClickListCollect() {
+        let self = this
+
+        Helper.ajax({
+            url: '/product/collect/list/get',
+            data: {
+                page: 1,
+                limit: 10
+            },
+            success: function (data) {
+                Toast.success('操作成功', Helper.duration)
+            },
+            complete: function () {
+            }
+        })
+    }
+
+    onClickAddToCollect() {
+        let self = this
+
+        Helper.ajax({
+            url: '/product/collect/save',
+            data: {
+                product_id: self.props.params.product_id
+            },
+            success: function (data) {
+                Toast.success('操作成功', Helper.duration)
+            },
+            complete: function () {
+            }
+        })
+    }
+
     render() {
         const {getFieldProps} = this.props.form
 
@@ -127,6 +160,12 @@ class ProductIndex extends Component {
                         margin: '100px 20px 0px 20px'
                     }}>
                         <Button type="primary" onClick={this.onClickAddToCart.bind(this)}>加入购物车</Button>
+                    </div>
+
+                    <div style={{
+                        margin: '100px 20px 0px 20px'
+                    }}>
+                        <Button type="primary" onClick={this.onClickListCollect.bind(this)}>加入收藏</Button>
                     </div>
                 </div>
             </div>
